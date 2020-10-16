@@ -1,0 +1,10 @@
+{
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"],
+  "compilerOptions": {
+    "strict": true,
+    "lib": ["es2020", "dom"],
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "jsx": "react"
+  }
+}

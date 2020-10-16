@@ -1,0 +1,17 @@
+{
+  "mount": {
+    "demo": "/",
+    "src": "/src"
+  },
+  "plugins": ["@snowpack/plugin-babel"],
+  "devOptions": {
+    "port": 1234
+  },
+  "alias": {
+    "lodash": "lodash-es",
+    "react-track-elements": "./src"
+  },
+  "installOptions": {
+    "installTypes": true
+  }
+}
