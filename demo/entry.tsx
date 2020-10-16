@@ -7,25 +7,40 @@ import {Example2 as OverlayExample2} from './overlay/Example2'
 import {ElementReporterExample} from './ElementReporterExample'
 import {ScrollExample} from './ScrollExample'
 
-ReactDOM.render(
-  <>
-    <h2>Simple</h2>
-    <SimpleExample />
+type Example = {
+  title: string
+  description?: string
+  component: React.ComponentType<any>
+}
 
-    <h2>Advanced</h2>
-    <AdvancedExample />
+const EXAMPLES: {[name: string]: Example} = {
+  simple: {title: 'Simple', component: SimpleExample},
+  advanced: {title: 'Advanced', component: AdvancedExample},
+  element: {title: 'Element', component: ElementReporterExample},
+  scroll: {title: 'Scroll', component: ScrollExample},
+  'overlay-example1': {title: 'OverlayExample1', component: OverlayExample1},
+  'overlay-example2': {title: 'OverlayExample2', component: OverlayExample2},
+}
 
-    <h2>Element reporter</h2>
-    <ElementReporterExample />
-
-    <h2>Scroll example</h2>
-    <ScrollExample />
-
-    <h2>OverlayExample1</h2>
-    <OverlayExample1 />
-
-    <h2>OverlayExample2</h2>
-    <OverlayExample2 />
-  </>,
-  document.getElementById('main'),
-)
+function render() {
+  const exampleName = document.location.hash.substring(1)
+  const example = EXAMPLES[exampleName || 'simple']
+  ReactDOM.render(
+    <>
+      <nav>
+        <ul style={{padding: 0, margin: 0, listStyleType: 'none'}}>
+          {Object.keys(EXAMPLES).map((exampleName) => (
+            <li style={{display: 'inline', margin: 6}}>
+              <a href={`#${exampleName}`}>{EXAMPLES[exampleName].title}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <h2>{example.title}</h2>
+      <example.component />
+    </>,
+    document.getElementById('main'),
+  )
+}
+render()
+window.addEventListener('hashchange', render)
