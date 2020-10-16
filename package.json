@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Keep track of values provided by child elements deeply nested in a React component tree",
   "main": "dist/cjs/index.js",
+  "types": "dist/cjs/index.d.ts",
+  "module": "dist/esm/index.js",
+  "es2015": "dist/es2015/index.js",
   "scripts": {
     "start": "snowpack dev",
     "build": "npm run build:es2015 && npm run build:esm && npm run build:cjs",
@@ -13,9 +16,6 @@
     "test": "jest",
     "prepublishOnly": "npm run build"
   },
-  "types": "dist/cjs/index.d.ts",
-  "module": "dist/esm/index.js",
-  "es2015": "dist/es2015/index.js",
   "keywords": [
     "track",
     "overlay",

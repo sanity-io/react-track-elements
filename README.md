@@ -88,7 +88,7 @@ function App() {
 
 ## Gotcha: Render cascading and infinite render loops
 
-Since the `useReportedValues()`-hook triggers a re-render whenever it receives an updated value from a reporter this can easily lead to infinite render loops. In development, you will see React warn about this with a message saying something like _Error: Maximum update depth exceeded_
+Since the `useReportedValues()`-hook triggers a re-render whenever it receives an updated value from a reporter this can easily lead to infinite render loops.In development, you will see React warn about this with a message saying something like _Error: Maximum update depth exceeded_
 
 There's a couple of ways to prevent this from happening:
 
@@ -104,7 +104,9 @@ Keep in mind that every time a new unique value gets reported, a re-render is tr
 
 ```jsx
 function MyReporterComponent(props) {
-  // Since useReporter will be called with a different object every time, we provide a custom equality check to avoid unneccessary renders in the component(s) that consumes the reported values
+  // Since useReporter will be called with a different object every time,
+  // we provide a custom equality check to avoid unneccessary renders in
+  // the component(s) that consumes the reported values
   useReporter(props.id, {message: props.message}, (a, b) => a.message === b.message)
   return <div>I'm reporting {props.message}</div>
 }
